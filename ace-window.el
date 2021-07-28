@@ -155,19 +155,19 @@ Consider changing this if the overlay tends to overlap with other things."
 
 ;; Must be defined before `aw-make-frame-char' since its :set function references this.
 (defvar aw-dispatch-alist
-  '((?x aw-delete-window "Delete Window")
-    (?m aw-swap-window "Swap Windows")
-    (?M aw-move-window "Move Window")
-    (?c aw-copy-window "Copy Window")
-    (?j aw-switch-buffer-in-window "Select Buffer")
-    (?n aw-flip-window)
-    (?u aw-switch-buffer-other-window "Switch Buffer Other Window")
-    (?e aw-execute-command-other-window "Execute Command Other Window")
-    (?F aw-split-window-fair "Split Fair Window")
-    (?v aw-split-window-vert "Split Vert Window")
-    (?b aw-split-window-horz "Split Horz Window")
-    (?o delete-other-windows "Delete Other Windows")
-    (?T aw-transpose-frame "Transpose Frame")
+  '((?0 aw-delete-window "Delete Window")
+    ;; (?m aw-swap-window "Swap Windows")
+    ;; (?M aw-move-window "Move Window")
+    ;; (?c aw-copy-window "Copy Window")
+    ;; (?j aw-switch-buffer-in-window "Select Buffer")
+    ;; (?n aw-flip-window)
+    ;; (?u aw-switch-buffer-other-window "Switch Buffer Other Window")
+    ;; (?e aw-execute-command-other-window "Execute Command Other Window")
+    (?o aw-split-window-fair "Split Fair Window")
+    (?3 aw-split-window-vert "Split Vert Window")
+    (?2 aw-split-window-horz "Split Horz Window")
+    (?1 delete-other-windows "Delete Other Windows")
+    (?t aw-transpose-frame "Transpose Frame")
     ;; ?i ?r ?t are used by hyperbole.el
     (?? aw-show-dispatch-help))
   "List of actions for `aw-dispatch-default'.
