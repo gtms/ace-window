@@ -645,8 +645,9 @@ selected window and the current window, so that the selected
 buffer moves to current window (and current buffer moves to
 selected window).
 
-Prefixed with two \\[universal-argument]'s, deletes the selected
-window."
+Prefixed with two \\[universal-argument]'s, calls `ace-window'
+with a `read-char' regardless of the number of windows on the
+frame."
   (interactive "p")
   (setq avy-current-path "")
   (cl-case arg
@@ -654,7 +655,8 @@ window."
      (let ((aw-ignore-on (not aw-ignore-on)))
        (ace-select-window)))
     (4 (ace-swap-window))
-    (16 (ace-delete-window))
+    (16 (let ((aw-dispatch-always t))
+          (ace-select-window)))
     (t (ace-select-window))))
 
 ;;* Utility
