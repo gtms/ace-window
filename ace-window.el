@@ -624,12 +624,14 @@ https://github.com/abo-abo/ace-window/wiki/display-buffer."
 (declare-function transpose-frame "ext:transpose-frame")
 (defun aw-transpose-frame (w)
   "Select any window on frame and `tranpose-frame'."
-  (transpose-frame (window-frame w)))
+  (select-window w)
+  (transpose-frame))
 
 (declare-function rotate-frame-clockwise "ext:transpose-frame")
 (defun aw-rotate-frame (w)
   "Rotate the frame clockwise and invoke hydra-rotate."
-  (rotate-frame-clockwise (window-frame w))
+  (select-window w)
+  (rotate-frame-clockwise)
   (hydra-rotate/body))
 
 ;;;###autoload
