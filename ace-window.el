@@ -168,6 +168,7 @@ Consider changing this if the overlay tends to overlap with other things."
     (?2 aw-split-window-horz "Split Horz Window")
     (?1 delete-other-windows "Delete Other Windows")
     (?t aw-transpose-frame "Transpose Frame")
+    (?r aw-rotate-frame "Rotate Frame")
     ;; ?i ?r ?t are used by hyperbole.el
     (?? aw-show-dispatch-help))
   "List of actions for `aw-dispatch-default'.
@@ -631,6 +632,12 @@ https://github.com/abo-abo/ace-window/wiki/display-buffer."
 (defun aw-transpose-frame (w)
   "Select any window on frame and `tranpose-frame'."
   (transpose-frame (window-frame w)))
+
+(declare-function rotate-frame-clockwise "ext:transpose-frame")
+(defun aw-rotate-frame (w)
+  "Rotate the frame clockwise and invoke hydra-rotate."
+  (rotate-frame-clockwise (window-frame w))
+  (hydra-rotate/body))
 
 ;;;###autoload
 (defun ace-window (arg)
