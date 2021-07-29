@@ -156,20 +156,13 @@ Consider changing this if the overlay tends to overlap with other things."
 ;; Must be defined before `aw-make-frame-char' since its :set function references this.
 (defvar aw-dispatch-alist
   '((?0 aw-delete-window "Delete Window")
-    ;; (?m aw-swap-window "Swap Windows")
-    ;; (?M aw-move-window "Move Window")
-    ;; (?c aw-copy-window "Copy Window")
-    ;; (?j aw-switch-buffer-in-window "Select Buffer")
-    ;; (?n aw-flip-window)
-    ;; (?u aw-switch-buffer-other-window "Switch Buffer Other Window")
-    ;; (?e aw-execute-command-other-window "Execute Command Other Window")
-    (?o aw-split-window-fair "Split Fair Window")
-    (?3 aw-split-window-vert "Split Vert Window")
-    (?2 aw-split-window-horz "Split Horz Window")
     (?1 delete-other-windows "Delete Other Windows")
+    (?2 aw-split-window-horz "Split Horz Window")
+    (?3 aw-split-window-vert "Split Vert Window")
+    (?o aw-split-window-fair "Split Fair Window")
+    (?m aw-swap-window "Swap Windows")
     (?t aw-transpose-frame "Transpose Frame")
     (?r aw-rotate-frame "Rotate Frame")
-    ;; ?i ?r ?t are used by hyperbole.el
     (?? aw-show-dispatch-help))
   "List of actions for `aw-dispatch-default'.
 Each action is a list of either:
