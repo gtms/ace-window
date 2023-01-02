@@ -157,13 +157,13 @@ Consider changing this if the overlay tends to overlap with other things."
 (defvar aw-dispatch-alist
   '((?0 aw-delete-window "Delete Window")
     (?1 delete-other-windows "Delete Other Windows")
-    (?2 aw-split-window-horz "Split Horz Window")
-    (?3 aw-split-window-vert "Split Vert Window")
-    (?o aw-split-window-fair "Split Fair Window")
+    (?2 aw-split-window-horz "Split Window Horizontally")
+    (?3 aw-split-window-vert "Split Window Vertically")
+    (?o aw-split-window-fair "Split Window Sensibly")
     (?m aw-swap-window "Swap Windows")
     (?t aw-transpose-frame "Transpose Frame")
     (?r aw-rotate-frame "Rotate Frame")
-    (?? aw-show-dispatch-help))
+    (?? aw-show-dispatch-help "This Help Vignette"))
   "List of actions for `aw-dispatch-default'.
 Each action is a list of either:
   (char function description) where function takes a single window argument
