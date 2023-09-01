@@ -155,21 +155,15 @@ Consider changing this if the overlay tends to overlap with other things."
 
 ;; Must be defined before `aw-make-frame-char' since its :set function references this.
 (defvar aw-dispatch-alist
-  '((?x aw-delete-window "Delete Window")
+  '((?0 aw-delete-window "Delete Window")
+    (?1 delete-other-windows "Delete Other Windows")
+    (?2 aw-split-window-horz "Split Window Horizontally")
+    (?3 aw-split-window-vert "Split Window Vertically")
+    (?o aw-split-window-fair "Split Window Sensibly")
     (?m aw-swap-window "Swap Windows")
-    (?M aw-move-window "Move Window")
-    (?c aw-copy-window "Copy Window")
-    (?j aw-switch-buffer-in-window "Select Buffer")
-    (?n aw-flip-window)
-    (?u aw-switch-buffer-other-window "Switch Buffer Other Window")
-    (?e aw-execute-command-other-window "Execute Command Other Window")
-    (?F aw-split-window-fair "Split Fair Window")
-    (?v aw-split-window-vert "Split Vert Window")
-    (?b aw-split-window-horz "Split Horz Window")
-    (?o delete-other-windows "Delete Other Windows")
-    (?T aw-transpose-frame "Transpose Frame")
-    ;; ?i ?r ?t are used by hyperbole.el
-    (?? aw-show-dispatch-help))
+    (?t aw-transpose-frame "Transpose Frame")
+    (?r aw-rotate-frame "Rotate Frame")
+    (?? aw-show-dispatch-help "This Help Vignette"))
   "List of actions for `aw-dispatch-default'.
 Each action is a list of either:
   (char function description) where function takes a single window argument
@@ -630,7 +624,15 @@ https://github.com/abo-abo/ace-window/wiki/display-buffer."
 (declare-function transpose-frame "ext:transpose-frame")
 (defun aw-transpose-frame (w)
   "Select any window on frame and `tranpose-frame'."
-  (transpose-frame (window-frame w)))
+  (select-window w)
+  (transpose-frame))
+
+(declare-function rotate-frame-clockwise "ext:transpose-frame")
+(defun aw-rotate-frame (w)
+  "Rotate the frame clockwise and invoke hydra-rotate."
+  (select-window w)
+  (rotate-frame-clockwise)
+  (hydra-rotate/body))
 
 ;;;###autoload
 (defun ace-window (arg)
@@ -645,8 +647,9 @@ selected window and the current window, so that the selected
 buffer moves to current window (and current buffer moves to
 selected window).
 
-Prefixed with two \\[universal-argument]'s, deletes the selected
-window."
+Prefixed with two \\[universal-argument]'s, calls `ace-window'
+with a `read-char' regardless of the number of windows on the
+frame."
   (interactive "p")
   (setq avy-current-path "")
   (cl-case arg
@@ -654,7 +657,8 @@ window."
      (let ((aw-ignore-on (not aw-ignore-on)))
        (ace-select-window)))
     (4 (ace-swap-window))
-    (16 (ace-delete-window))
+    (16 (let ((aw-dispatch-always t))
+          (ace-select-window)))
     (t (ace-select-window))))
 
 ;;* Utility
